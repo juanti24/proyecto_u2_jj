@@ -13,6 +13,7 @@ public class PersonaJdbcRepositoryImpl implements IPersonaJdbcRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Persona buscarPorId(int id) {
 		return this.jdbcTemplate.queryForObject("select * from persona where id=?", new Object[] { id },

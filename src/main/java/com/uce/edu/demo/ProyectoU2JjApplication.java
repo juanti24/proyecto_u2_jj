@@ -1,21 +1,22 @@
 package com.uce.edu.demo;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.jboss.logging.Logger;
-import com.uce.edu.demo.service.IPersonaJdbcService;
+
+import com.uce.edu.demo.service.IEstudianteJdbcService;
+import com.uce.edu.demo.to.Estudiante;
 import com.uce.edu.demo.to.Persona;
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private IPersonaJdbcService personaJdbcService;
-	
-	private static Logger log = Logger.getLogger(ProyectoU2JjApplication.class);
+	private IEstudianteJdbcService estudianteJdbcService;
 
+	private static Logger log = Logger.getLogger(ProyectoU2JjApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2JjApplication.class, args);
@@ -24,29 +25,49 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		
-		
-		Persona p = new Persona();
-		p.setId(3);
-		p.setNombre("Luis");
-		p.setApellido("Jumbo");
+		// Insertar
+		Estudiante e = new Estudiante();
+		e.setId(1);
+		e.setNombre("Juan");
+		e.setApellido("Jumbo");
+		e.setCedula("1723920979");
+		e.setTelefono("0958768529");
 
-		// insertar
-		// this.personaJdbcService.guardar(p);
+		Estudiante e1 = new Estudiante();
+		e1.setId(2);
+		e1.setNombre("Xavier");
+		e1.setApellido("Jumbo");
+		e1.setCedula("1723920878");
+		e1.setTelefono("0999768529");
 
-		Persona p1 = new Persona();
-		p1.setId(2);
-		p1.setNombre("Carlos");
-		p1.setApellido("Jumbo");
+		Estudiante e2 = new Estudiante();
+		e2.setId(3);
+		e2.setNombre("Carlos");
+		e2.setApellido("Suarez");
+		e2.setCedula("1123920878");
+		e2.setTelefono("0989768449");
+		
+		//this.estudianteJdbcService.guardar(e2);
+		log.info("Se inserto el estudiante: " + e2);
 
-		//actualizar
-		//this.personaJdbcService.actualizar(p1);
-		
-		//eliminar
-		//this.personaJdbcService.eliminar(3);
-		
-		//buscar por id
-		 log.info(this.personaJdbcService.buscar(2));
+		// Actualizar
+		Estudiante e3 = new Estudiante();
+		e3.setId(3);
+		e3.setNombre("Carlos");
+		e3.setApellido("Jumbo");
+		e3.setCedula("1123920878");
+		e3.setTelefono("0989768449");
+
+		// this.estudianteJdbcService.actualizar(e3);
+		log.info("Se actualizo el estudiante: " + e3);
+
+		// Eliminar
+		// this.estudianteJdbcService.eliminar(2);
+		log.info("Se elimino el estudiante con id: " + 2 + " correspondiente: " + e1);
+
+		// Buscar
+		//log.info(this.estudianteJdbcService.buscar(1));
+		log.info("Se busco el estudiante con id: " + 1 + " correspondiente: " + e);
 		
 
 	}

@@ -49,7 +49,5 @@ public class Persona {
 				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
-	
 
 }

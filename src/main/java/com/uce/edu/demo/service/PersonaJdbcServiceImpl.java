@@ -36,8 +36,8 @@ public class PersonaJdbcServiceImpl implements IPersonaJdbcService {
 
 	@Override
 	public Persona buscar(int id) {
-		this.personaJdbcRepository.buscarPorId(id);
-		return null;
+		
+		return this.personaJdbcRepository.buscarPorId(id);
 	}
 
 }
