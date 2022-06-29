@@ -1,7 +1,7 @@
 package com.uce.edu.demo.service;
 
 import com.uce.edu.demo.to.Estudiante;
-import com.uce.edu.demo.to.Persona;
+import com.uce.edu.demo.to.PersonaTo;
 
 public interface IEstudianteJdbcService {
 
