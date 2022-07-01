@@ -3,7 +3,7 @@ package com.uce.edu.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uce.edu.demo.repository.IEstudianteJdbcRepository;
-import com.uce.edu.demo.to.Estudiante;
+import com.uce.edu.demo.to.EstudianteTo;
 import com.uce.edu.demo.to.PersonaTo;
 
 @Service
@@ -13,14 +13,14 @@ public class EstudianteJdbcServiceImpl implements IEstudianteJdbcService {
 	private IEstudianteJdbcRepository estudianteJdbcRepository;
 
 	@Override
-	public void guardar(Estudiante estudiante) {
-		this.estudianteJdbcRepository.insertar(estudiante);
+	public void guardar(EstudianteTo estudianteTo) {
+		this.estudianteJdbcRepository.insertar(estudianteTo);
 		
 	}
 
 	@Override
-	public void actualizar(Estudiante estudiante) {
-		this.estudianteJdbcRepository.actualizar(estudiante);
+	public void actualizar(EstudianteTo estudianteTo) {
+		this.estudianteJdbcRepository.actualizar(estudianteTo);
 		
 	}
 
@@ -31,7 +31,7 @@ public class EstudianteJdbcServiceImpl implements IEstudianteJdbcService {
 	}
 
 	@Override
-	public Estudiante buscar(int id) {
+	public EstudianteTo buscar(int id) {
 	
 		return this.estudianteJdbcRepository.buscarPorId(id);
 	}

@@ -1,33 +1,37 @@
-package com.uce.edu.demo.to;
+package com.uce.edu.demo.repository.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estudiante")
 public class Estudiante {
 
-	private int id;
+	@Id
+	@Column(name = "id")
+	private Integer id;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@Column(name = "apellido")
 	private String apellido;
+
+	@Column(name = "cedula")
 	private String cedula;
-	private String telefono;
 
-	// Constructor por defecto
-	public Estudiante() {
-
-	}
-
-	public Estudiante(int id, String nombre, String apellido, String cedula, String telefono) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.cedula = cedula;
-		this.telefono = telefono;
-	}
+	@Column(name = "telefono")
 
 	// SET Y GET
-	public int getId() {
+	private String telefono;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
