@@ -6,17 +6,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.Persona;
-import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
-	
 	@Autowired
-	private IEstudianteJpaService estudianteJpaService;
+	private IPersonaJpaService personaJpaService;
 
 	private static Logger log = Logger.getLogger(ProyectoU2JjApplication.class);
 
@@ -27,35 +24,28 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//Buscar
-		log.info("Dato con JPA: " + this.estudianteJpaService.buscar(1));
+		// Buscar
+		//log.info("Dato con JPA: " + this.personaJpaService.buscar(1));
 
-		Estudiante e = new Estudiante();
-		e.setId(6);
-		e.setNombre("Alejandra");
-		e.setApellido("Tinizaray");
-		e.setCedula("1723949457");
-		e.setTelefono("0994987474");
-		
-		//Guardar
-		this.estudianteJpaService.guardar(e);
+		Persona per = new Persona();
+		//per.setId(3);
+		per.setNombre("Carlos");
+		per.setApellido("Suarez");
 
-		Estudiante e1 = new Estudiante();
-		e1.setId(1);
-		e1.setNombre("Nori");
-		e1.setApellido("Soto");
-		
-		//Actualizar
-		this.estudianteJpaService.actualizar(e1);
-		
-		//Eliminar
-		this.estudianteJpaService.eliminar(2);
-		
-		
-		
-		
-		
-		
+		// Guardar
+		this.personaJpaService.guardar(per);
+
+		Persona per1 = new Persona();
+		//per1.setId(2);
+		per1.setNombre("Kevin");
+		per1.setApellido("Jumbo");
+
+		// Actualizar
+		// this.personaJpaService.actualizar(per1);
+
+		// Eliminar
+		// this.personaJpaService.eliminar(2);
+
 	}
 
 }
