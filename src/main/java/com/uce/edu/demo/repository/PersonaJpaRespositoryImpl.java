@@ -49,21 +49,29 @@ public class PersonaJpaRespositoryImpl implements IPersonaJpaRepository {
 
 		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :datoCedula");
 		jpqlQuery.setParameter("datoCedula", cedula);
-
 		return (Persona) jpqlQuery.getSingleResult();
 	}
 
 	@Override
-	public List<Persona> buscarPorGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
-		
-		Query myQuery= this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido = :datoApellido");
+
+		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido = :datoApellido");
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.getResultList();
 	}
+
+	@Override
+	public List<Persona> buscarPorNombre(String nombre) {
+		Query myQuery1 = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.nombre = :datoNombre");
+		myQuery1.setParameter("datoNombre", nombre);
+		return myQuery1.getResultList();
+	}
+
+	@Override
+	public List<Persona> buscarPorGenero(String genero) {
+		Query myQuery2 = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.genero = :datoGenero");
+		myQuery2.setParameter("datoGenero", genero);
+		return myQuery2.getResultList();
+	}
+
 }

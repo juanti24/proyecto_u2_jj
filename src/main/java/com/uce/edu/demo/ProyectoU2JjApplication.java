@@ -26,38 +26,37 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		// Buscar
-		//log.info("Dato con JPA: " + this.personaJpaService.buscar(1));
-
 		Persona per = new Persona();
-		//per.setId(3);
-		per.setNombre("Ivan");
-		per.setApellido("Suarez");
+		// per.setId(3);
+		per.setNombre("Kevin");
+		per.setApellido("Gutierrez");
 		per.setGenero("Masculino");
-		per.setCedula("1712320979");
+		per.setCedula("1722753151");
 
 		// Guardar
-		//this.personaJpaService.guardar(per);
-
-		Persona per1 = new Persona();
-		//per1.setId(2);
-		per1.setNombre("Kevin");
-		per1.setApellido("Jumbo");
-
-		// Actualizar
-		// this.personaJpaService.actualizar(per1);
-
-		// Eliminar
-		// this.personaJpaService.eliminar(2);
-
-		log.info("Se busca a la persona: " + this.personaJpaService.buscarPorCedula("1712320979"));
+		// this.personaJpaService.guardar(per);
 		
-		
-		List<Persona> listp = this.personaJpaService.buscarPorApellido("Suarez");
-		for(Persona item : listp) {
-			log.info("Persona: " + item);
+
+		// Buscar Por Apellido
+		// List<Persona> listp = this.personaJpaService.buscarPorApellido("Suarez");
+		// for(Persona item : listp) {
+		// log.info("Persona: " + item);
+		// }
+
+		// Buscar Por Nombre
+		log.info("Buscar Por Nombre");
+		List<Persona> listp1 = this.personaJpaService.buscarPorNombre("Kevin");
+		for (Persona item1 : listp1) {
+			log.info("Persona: " + item1);
 		}
-	
+
+		// Buscar Por Genero
+		log.info("Buscar Por Genero");
+		List<Persona> listp2 = this.personaJpaService.buscarPorGenero("Masculino");
+		for (Persona item2 : listp2) {
+			log.info("Persona: " + item2);
+		 }
+
 	}
 
 }
