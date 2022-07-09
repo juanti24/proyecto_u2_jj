@@ -26,37 +26,15 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Persona per = new Persona();
-		// per.setId(3);
-		per.setNombre("Kevin");
-		per.setApellido("Gutierrez");
-		per.setGenero("Masculino");
-		per.setCedula("1722753151");
-
-		// Guardar
-		// this.personaJpaService.guardar(per);
+	//Buscar por Apellido
+	int resultado = this.personaJpaService.actualizarPorApellido("Teran","M");
+	log.info("Resultado: " + resultado);
+	 
+	//Buscar por Apellido	
+	int resultado1 = this.personaJpaService.eliminarPorGenero("Femenino");
+	log.info("Resultado: " + resultado1);
 		
-
-		// Buscar Por Apellido
-		// List<Persona> listp = this.personaJpaService.buscarPorApellido("Suarez");
-		// for(Persona item : listp) {
-		// log.info("Persona: " + item);
-		// }
-
-		// Buscar Por Nombre
-		log.info("Buscar Por Nombre");
-		List<Persona> listp1 = this.personaJpaService.buscarPorNombre("Kevin");
-		for (Persona item1 : listp1) {
-			log.info("Persona: " + item1);
-		}
-
-		// Buscar Por Genero
-		log.info("Buscar Por Genero");
-		List<Persona> listp2 = this.personaJpaService.buscarPorGenero("Masculino");
-		for (Persona item2 : listp2) {
-			log.info("Persona: " + item2);
-		 }
-
+	
 	}
 
 }
