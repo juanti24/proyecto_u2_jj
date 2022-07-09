@@ -1,4 +1,6 @@
-package com.uce.edu.demo.repository.modelo;
+package com.uce.edu.demo.prueba.repository.modelo;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,26 +11,25 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "persona")
-public class Persona {
-
+@Table(name = "propietario")
+public class Propietario {
 	@Id
-	@Column(name = "pers_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pers_seq_id")
-	@SequenceGenerator(name = "pers_seq_id", sequenceName = "pers_seq_id", allocationSize = 1)
+	@Column(name = "prop_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prop_id_seq")
+	@SequenceGenerator(name = "prop_id_seq", sequenceName = "prop_id_seq", allocationSize = 1)
 	private Integer id;
 
-	@Column(name = "pers_nombre")
+	@Column(name = "prop_nombre")
 	private String nombre;
-
-	@Column(name = "pers_apellido")
+	
+	@Column(name = "prop_apellido")
 	private String apellido;
-
-	@Column(name = "pers_genero")
-	private String genero;
-
-	@Column(name = "pers_cedula")
+	
+	@Column(name = "prop_cedula")
 	private String cedula;
+	
+	@Column(name = "prop_fecha_nacimiento")
+	private LocalDateTime fechaNacimiento;
 
 	// SET Y GET
 	public Integer getId() {
@@ -55,14 +56,6 @@ public class Persona {
 		this.apellido = apellido;
 	}
 
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
 	public String getCedula() {
 		return cedula;
 	}
@@ -71,10 +64,18 @@ public class Persona {
 		this.cedula = cedula;
 	}
 
+	public LocalDateTime getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero
-				+ ", cedula=" + cedula + "]";
+		return "Propietario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
+				+ ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
 }

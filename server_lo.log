@@ -1,2 +1,9 @@
 2022-06-27 22:33:40 INFO  ProyectoU2JjApplication:50 - 
 2022-06-27 22:34:52 INFO  ProyectoU2JjApplication:50 - 
+2022-07-09 16:46:48 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: Vehiculo [id=null, marca=Chevrolet, placa=PAP-1425, tipo=P, precio=25000]
+2022-07-09 17:03:12 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: Vehiculo [id=null, marca=Toyota, placa=PJK-2514, tipo=L, precio=23000]
+2022-07-09 17:03:12 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
+2022-07-09 17:03:33 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: Vehiculo [id=null, marca=Toyota, placa=PJK-2514, tipo=L, precio=23000]
+2022-07-09 17:03:34 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
+2022-07-09 17:07:49 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: Vehiculo [id=null, marca=Toyota, placa=PJK-2514, tipo=L, precio=23000]
+2022-07-09 17:07:49 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
