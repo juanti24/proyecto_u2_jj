@@ -1,16 +1,15 @@
 package com.uce.edu.demo.service;
 
-import com.uce.edu.demo.to.EstudianteTo;
-import com.uce.edu.demo.to.PersonaTo;
+import com.uce.edu.demo.repository.modelo.Estudiante;
 
 public interface IEstudianteJdbcService {
 
-	public void guardar(EstudianteTo estudianteTo);
+	public void crear(Estudiante e);
 
-	public void actualizar(EstudianteTo estudianteTo);
+	public void renovarInformacion(Estudiante e);
 
-	public void eliminar(int id);
+	public Estudiante consultar(String cedula);
 
-	public EstudianteTo buscar(int id);
+	public void eliminarRegistro(String cedula);
 
 }

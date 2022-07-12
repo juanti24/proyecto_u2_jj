@@ -7,3 +7,17 @@
 2022-07-09 17:03:34 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
 2022-07-09 17:07:49 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: Vehiculo [id=null, marca=Toyota, placa=PJK-2514, tipo=L, precio=23000]
 2022-07-09 17:07:49 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
+2022-07-12 00:52:07 INFO  EstudianteJpaRepositoryImpl:26 - Insertando en la base de datos: Estudiante [cedula=1615141891, nombre=Nicole, apellido=Moncayo, edad=21, semestre=Cuarto]
+2022-07-12 00:53:09 INFO  EstudianteJpaRepositoryImpl:26 - Insertando en la base de datos: Estudiante [cedula=1615141891, nombre=Nicole, apellido=Moncayo, edad=21, semestre=Cuarto]
+2022-07-12 01:06:29 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1615141891, nombre=Nicole, apellido=Moncayo, edad=21, semestre=Cuarto]
+2022-07-12 01:06:29 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-12 01:07:02 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1316129002, nombre=Ariel, apellido=Manada, edad=25, semestre=Sexto]
+2022-07-12 01:07:02 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-12 01:08:12 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1723920979, nombre=Juan, apellido=Jumbo, edad=24, semestre=Noveno]
+2022-07-12 01:08:12 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-12 01:08:34 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1123920979, nombre=Xavier, apellido=Jumbo, edad=24, semestre=Noveno]
+2022-07-12 01:08:34 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-12 01:09:37 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1723000979, nombre=Luis, apellido=Jumbo, edad=24, semestre=Cuarto]
+2022-07-12 01:09:37 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-12 01:10:11 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1723111979, nombre=Carlos, apellido=Tinizaray, edad=20, semestre=Sexto]
+2022-07-12 01:10:11 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.

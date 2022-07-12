@@ -1,42 +1,50 @@
 package com.uce.edu.demo.repository;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import com.uce.edu.demo.to.EstudianteTo;
+
+import com.uce.edu.demo.repository.modelo.Estudiante;
 
 @Repository
-public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository{
-	
+public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository {
+
+	private static final Logger LOG = Logger.getLogger(EstudianteJdbcRepositoryImpl.class);
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@SuppressWarnings("deprecation")
 	@Override
-	public EstudianteTo buscarPorId(int id) {
-		return this.jdbcTemplate.queryForObject("select * from estudiante where id=?", new Object[] { id },
-				new BeanPropertyRowMapper<EstudianteTo>(EstudianteTo.class));
-
+	public void insertar(Estudiante e) {
+		LOG.info("Insertando en la base de datos: " + e);
+		this.jdbcTemplate.update(
+				"INSERT INTO estudiante(cedula, nombre, apellido, edad, semestre) VALUES (?, ?, ?, ?, ?)",
+				new Object[] { e.getCedula(), e.getNombre(), e.getApellido(), e.getEdad(), e.getSemestre() });
+		LOG.info("Se inserto el estudiante a la base de datos.");
 	}
 
 	@Override
-	public void insertar(EstudianteTo estudianteTo) {
-		this.jdbcTemplate.update("insert into estudiante (id, nombre, apellido,cedula,telefono) values (?,?,?,?,?)",
-				new Object[] { estudianteTo.getId(), estudianteTo.getNombre(), estudianteTo.getApellido(), estudianteTo.getCedula(), estudianteTo.getTelefono() });
-		
+	public void actualizar(Estudiante e) {
+		LOG.info("Actualizando en la base de datos al estudiante de cedula: " + e.getCedula());
+		this.jdbcTemplate.update("UPDATE estudiante SET nombre=?, apellido=?, edad=?, semestre=? WHERE cedula=?",
+				new Object[] { e.getNombre(), e.getApellido(), e.getEdad(), e.getSemestre(), e.getCedula() });
+		LOG.info("Se actualizo la informacion del estudiante en la base de datos.");
 	}
 
 	@Override
-	public void actualizar(EstudianteTo estudianteTo) {
-		this.jdbcTemplate.update("update estudiante set nombre=?,apellido=?,cedula=?,telefono=? where id=?",
-				new Object[] { estudianteTo.getNombre(), estudianteTo.getApellido(),estudianteTo.getCedula(),estudianteTo.getTelefono(), estudianteTo.getId() });
+	public Estudiante buscar(String cedula) {
+		LOG.info("Buscando en la base de datos al estudiante de cedula: " + cedula);
+		return this.jdbcTemplate.queryForObject("SELECT * FROM estudiante WHERE cedula = ?", new Object[] { cedula },
+				new BeanPropertyRowMapper<Estudiante>(Estudiante.class));
 	}
 
 	@Override
-	public void eliminar(int id) {
-		this.jdbcTemplate.update("delete from estudiante where id=?", new Object[] { id });
-		
+	public void eliminar(String cedula) {
+		LOG.info("Eliminando de la base de datos al estudiante de cedula: " + cedula);
+		this.jdbcTemplate.update("DELETE FROM estudiante WHERE cedula=?", new Object[] { cedula });
+		LOG.info("Se elimino al estudiante de la base de datos.");
 	}
 
 }
