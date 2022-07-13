@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -15,7 +16,12 @@ import javax.persistence.Table;
 
 @NamedQuery(name = "Persona.buscarPorCeddula", query = "SELECT p FROM Persona p WHERE p.cedula = :datoCedula")
 @NamedQuery(name = "Persona.buscarPorNombreApellido", query = "SELECT p FROM Persona p WHERE p.nombre = :datoNombre AND p.apellido = :datoApellido")
+@NamedNativeQuery(name = "Persona.buscarPorCedulaNative", query = "SELECT * FROM persona WHERE pers_cedula = :datoCedula", resultClass= Persona.class)
+@NamedNativeQuery(name = "Persona.buscarPorCedulaNative1", query = "SELECT * FROM persona WHERE pers_cedula = :datoCedula ", resultClass= Persona.class)
 
+/*
+ * @NamedNativeQueries({@NamedNativeQuery(name = "Persona.buscarPorCedulaNative", query = "SELECT * FROM persona WHERE pers_cedula = :datoCedula "), @NamedNativeQuery(name = "Persona.buscarPorCedulaNative1", query = "SELECT * FROM persona WHERE pers_cedula = :datoCedula ") })
+ */
 /*
  * @NamedQueries({(name="Persona.buscarPorCeddula",
  * query="SELECT p FROM Persona p WHERE p.cedula = :datoCedula"),
