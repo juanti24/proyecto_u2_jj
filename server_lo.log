@@ -21,3 +21,10 @@
 2022-07-12 01:09:37 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
 2022-07-12 01:10:11 INFO  EstudianteJdbcRepositoryImpl:21 - Insertando en la base de datos: Estudiante [cedula=1723111979, nombre=Carlos, apellido=Tinizaray, edad=20, semestre=Sexto]
 2022-07-12 01:10:11 INFO  EstudianteJdbcRepositoryImpl:25 - Se inserto el estudiante a la base de datos.
+2022-07-13 22:50:50 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1113111979, nombre=Ricardo, apellido=Piruchi, edad=20, semestre=Sexto]
+2022-07-13 22:52:59 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715957537, nombre=David, apellido=Garcia, edad=20, semestre=Primero]
+2022-07-13 23:15:52 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715957537, nombre=David, apellido=Garcia, edad=20, semestre=Primero]
+2022-07-13 23:16:49 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1115957537, nombre=Juan, apellido=Garcia, edad=20, semestre=Primero]
+2022-07-13 23:18:15 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715900227, nombre=Carlos, apellido=Suarez, edad=22, semestre=Segundo]
+2022-07-13 23:18:46 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715900117, nombre=Pepe, apellido=Suarez, edad=22, semestre=Segundo]
+2022-07-13 23:27:45 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1712900117, nombre=Luis, apellido=Suarez, edad=22, semestre=Segundo]

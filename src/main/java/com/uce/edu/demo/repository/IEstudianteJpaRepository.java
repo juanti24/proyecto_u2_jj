@@ -12,6 +12,14 @@ public interface IEstudianteJpaRepository {
 
 	public Estudiante buscar(String cedula);
 
+	public Estudiante buscarPorFacultad(String facultad);
+
+	public Estudiante buscarPorCorreo(String correo);
+
+	public Estudiante buscarPorCedulaSemestre(String cedula, String semestre);
+
+	public List<Estudiante> buscarPorFacultadEdad(String facultad, Integer edad);
+
 	public void eliminar(String cedula);
 
 	public List<Estudiante> buscarTodos();

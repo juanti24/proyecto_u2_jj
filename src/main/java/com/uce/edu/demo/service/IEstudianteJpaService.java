@@ -6,13 +6,13 @@ import com.uce.edu.demo.repository.modelo.Estudiante;
 
 public interface IEstudianteJpaService {
 	
-	public void insertar(Estudiante e);
+	public void crear(Estudiante e);
 
-	public void actualizar(Estudiante e);
+	public void renovarInformacion(Estudiante e);
 
-	public Estudiante buscar(String cedula);
+	public Estudiante consultar(String cedula);
 
-	public void eliminar(String cedula);
+	public void eliminarRegistro(String cedula);
 
 	public List<Estudiante> buscarTodos();
 
@@ -25,6 +25,14 @@ public interface IEstudianteJpaService {
 	public List<Estudiante> buscarPorSemestre(String semestre1, String semestre2);
 
 	public List<Estudiante> buscarPorEdad(Integer edad1, Integer edad2);
+	
+	public Estudiante buscarPorFacultad(String facultad);
+
+	public Estudiante buscarPorCorreo(String correo);
+
+	public Estudiante buscarPorCedulaSemestre(String cedula, String semestre);
+
+	public List<Estudiante> buscarPorFacultadEdad(String facultad, Integer edad);
 
 }
 
