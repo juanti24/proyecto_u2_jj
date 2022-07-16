@@ -94,7 +94,17 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService {
 		return this.estudianteJpaRepository.buscarPorFacultadEdad(facultad, edad);
 	}
 
-	
-	
+	@Override
+	public List<Estudiante> buscarPorNombresFacultad(String nombre, String apellido, String facultad) {
+		// TODO Auto-generated method stub
+		return this.estudianteJpaRepository.buscarPorNombresFacultad(nombre, apellido, facultad);
+	}
+
+	@Override
+	public Estudiante buscarPorCedulaCorreo(String cedula, String correo) {
+		// TODO Auto-generated method stub
+		return this.estudianteJpaRepository.buscarPorCedulaCorreo(cedula, correo);
+	}
+
 
 }

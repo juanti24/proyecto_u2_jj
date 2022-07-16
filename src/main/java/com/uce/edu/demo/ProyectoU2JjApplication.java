@@ -1,19 +1,22 @@
 package com.uce.edu.demo;
 
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.Persona;
-import com.uce.edu.demo.service.IPersonaJpaService;
+import com.uce.edu.demo.service.IEstudianteJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private IPersonaJpaService personaJpaService;
+	private IEstudianteJpaService estudianteJpaService;
 
 	private static Logger Log = Logger.getLogger(ProyectoU2JjApplication.class);
 
@@ -25,22 +28,20 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Persona per = new Persona();
-		per.setNombre("Nori");
-		per.setApellido("Tinizaray");
-		per.setGenero("Femenino");
-		per.setCedula("1750020979");
+		// Criteria API
 
-		// Guardar
-		//this.personaJpaService.guardar(per);
-		
-		//Buscar por cedula Api
-		Persona p = this.personaJpaService.buscarPorCriteriaApi("1723920979");
-		Log.info("Criteria API: "+ p);
-		
-		Persona p1 = this.personaJpaService.buscarDinamicamente("Irene", "Telo", "Femenino");
-		Log.info("Busqueda Dinamica: "+ p1);
-		
+		Log.info("\nBúsqueda 4: BUSCAR POR NOMBRES Y FACULTAD.");
+
+		List<Estudiante> lista = this.estudianteJpaService.buscarPorNombresFacultad("Juan", "Garcia", "Matematicas");
+		for (Estudiante item : lista) {
+			Log.info("Estudiante: " + item);
+		}
+
+		Log.info("\nBúsqueda 4: BUSCAR POR CEDULA Y CORREO.");
+
+		Estudiante e = this.estudianteJpaService.buscarPorCedulaCorreo("1712900117", "lusu@gmail.com");
+		Log.info("Estudiante: " + e);
+
 	}
 
 }

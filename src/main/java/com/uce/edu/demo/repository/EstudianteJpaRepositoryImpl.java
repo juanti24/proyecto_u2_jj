@@ -6,12 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+
 import com.uce.edu.demo.repository.modelo.Estudiante;
-import com.uce.edu.demo.repository.modelo.Persona;
 
 @Repository
 @Transactional
@@ -120,5 +124,48 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 		myQ.setParameter("datofacultad", facultad);
 		myQ.setParameter("datoedad", edad);
 		return myQ.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> buscarPorNombresFacultad(String nombre, String apellido, String facultad) {
+		
+		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
+
+        Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
+
+        Predicate eNombre = myBuilder.equal(estuFrom.get("nombre"), nombre);
+        Predicate eApellido = myBuilder.equal(estuFrom.get("apellido"), apellido);
+        Predicate eFacultad= myBuilder.equal(estuFrom.get("facultad"), facultad);
+
+        Predicate eAnd = myBuilder.and(eNombre, eApellido, eFacultad);
+
+        CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
+
+        TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
+
+        return estuFinal.getResultList();
+	}
+
+	@Override
+	public Estudiante buscarPorCedulaCorreo(String cedula, String correo) {
+		
+		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
+
+        Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
+
+        Predicate eCedula = myBuilder.equal(estuFrom.get("cedula"), cedula);
+        Predicate eCorreo = myBuilder.equal(estuFrom.get("correo"), correo);
+
+        Predicate eAnd = myBuilder.and(eCedula, eCorreo);
+
+        CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
+
+        TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
+
+        return estuFinal.getSingleResult();
 	}
 }

@@ -34,4 +34,8 @@ public interface IEstudianteJpaRepository {
 
 	public List<Estudiante> buscarPorEdad(Integer edad1, Integer edad2);
 
+	public List<Estudiante> buscarPorNombresFacultad(String nombre, String apellido, String facultad);
+
+	public Estudiante buscarPorCedulaCorreo(String cedula, String correo);
+
 }
