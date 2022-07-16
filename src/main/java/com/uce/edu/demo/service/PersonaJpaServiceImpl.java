@@ -87,6 +87,19 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService {
 	}
 
 	@Override
+	public Persona buscarPorCriteriaApi(String cedula) {
+		// TODO Auto-generated method stub
+		return this.personaJpaRespository.buscarPorCriteriaApi(cedula);
+	}
+	
+	
+	@Override
+	public Persona buscarDinamicamente(String nombre, String apellido, String genero) {
+		// TODO Auto-generated method stub
+		return this.personaJpaRespository.buscarDinamicamente(nombre, apellido, genero);
+	}
+	
+	@Override
 	public int eliminarPorGenero(String genero) {
 		// TODO Auto-generated method stub
 		return this.personaJpaRespository.eliminarPorGenero(genero);
