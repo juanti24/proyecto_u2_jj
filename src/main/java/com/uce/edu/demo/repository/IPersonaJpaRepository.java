@@ -1,7 +1,10 @@
 package com.uce.edu.demo.repository;
 
 import java.util.List;
+
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 
 public interface IPersonaJpaRepository {
 
@@ -31,6 +34,8 @@ public interface IPersonaJpaRepository {
 
 	public Persona buscarDinamicamentePredicados(String nombre, String apellido, String genero);
 
+	public List<PersonaSencilla> buscarPorPersonaSencillo(String apellido);
+	
 	public Persona buscarPorId(Integer id);
 
 	public void insertar(Persona persona);
@@ -42,5 +47,7 @@ public interface IPersonaJpaRepository {
 	public int actualizarPorApellido(String apellido, String genero);
 
 	public int eliminarPorGenero(String genero);
+	
+	public List<PersonaContadorGenero> consultarCantidadPorGenero();
 
 }

@@ -8,15 +8,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Estudiante;
-import com.uce.edu.demo.repository.modelo.Persona;
-import com.uce.edu.demo.service.IEstudianteJpaService;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
+import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private IEstudianteJpaService estudianteJpaService;
+	private IPersonaJpaService personaJpaService;
 
 	private static Logger Log = Logger.getLogger(ProyectoU2JjApplication.class);
 
@@ -28,20 +28,17 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		// Criteria API
+		List<PersonaSencilla> listaPersona = this.personaJpaService.buscarPorPersonaSencillo("Tinizaray");
 
-		Log.info("\nBúsqueda 4: BUSCAR POR NOMBRES Y FACULTAD.");
-
-		List<Estudiante> lista = this.estudianteJpaService.buscarPorNombresFacultad("Juan", "Garcia", "Matematicas");
-		for (Estudiante item : lista) {
-			Log.info("Estudiante: " + item);
+		for (PersonaSencilla perItem : listaPersona) {
+			Log.info("PersonaSencilla: " + perItem );
 		}
+		
+		List<PersonaContadorGenero> listaPersona1 = this.personaJpaService.consultarCantidadPorGenero();
 
-		Log.info("\nBúsqueda 4: BUSCAR POR CEDULA Y CORREO.");
-
-		Estudiante e = this.estudianteJpaService.buscarPorCedulaCorreo("1712900117", "lusu@gmail.com");
-		Log.info("Estudiante: " + e);
-
+		for (PersonaContadorGenero perItem : listaPersona1) {
+			Log.info("PersonaContadorGenero: " + perItem );
+		}
+		
 	}
-
 }
