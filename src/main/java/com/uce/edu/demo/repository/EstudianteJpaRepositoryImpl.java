@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorEdad;
+import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 
 @Repository
 @Transactional
@@ -105,14 +107,16 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 
 	@Override
 	public Estudiante buscarPorCorreo(String correo) {
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM estudiante WHERE estu_correo = :datoCorreo", Estudiante.class);
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM estudiante WHERE estu_correo = :datoCorreo",
+				Estudiante.class);
 		myQuery.setParameter("datoCorreo", correo);
 		return (Estudiante) myQuery.getSingleResult();
 	}
 
 	@Override
 	public Estudiante buscarPorCedulaSemestre(String cedula, String semestre) {
-		TypedQuery<Estudiante> myQ = this.entityManager.createNamedQuery("Estudiante.buscarPorCedulaSemestre", Estudiante.class);
+		TypedQuery<Estudiante> myQ = this.entityManager.createNamedQuery("Estudiante.buscarPorCedulaSemestre",
+				Estudiante.class);
 		myQ.setParameter("datocedula", cedula);
 		myQ.setParameter("datosemestre", semestre);
 		return myQ.getSingleResult();
@@ -120,7 +124,7 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 
 	@Override
 	public List<Estudiante> buscarPorFacultadEdad(String facultad, Integer edad) {
-		Query myQ = this.entityManager.createNamedQuery("Estudiante.buscarPorFacultadEdad",Estudiante.class);
+		Query myQ = this.entityManager.createNamedQuery("Estudiante.buscarPorFacultadEdad", Estudiante.class);
 		myQ.setParameter("datofacultad", facultad);
 		myQ.setParameter("datoedad", edad);
 		return myQ.getResultList();
@@ -128,44 +132,63 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 
 	@Override
 	public List<Estudiante> buscarPorNombresFacultad(String nombre, String apellido, String facultad) {
-		
+
 		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
 
-        CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
+		CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
 
-        Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
+		Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
 
-        Predicate eNombre = myBuilder.equal(estuFrom.get("nombre"), nombre);
-        Predicate eApellido = myBuilder.equal(estuFrom.get("apellido"), apellido);
-        Predicate eFacultad= myBuilder.equal(estuFrom.get("facultad"), facultad);
+		Predicate eNombre = myBuilder.equal(estuFrom.get("nombre"), nombre);
+		Predicate eApellido = myBuilder.equal(estuFrom.get("apellido"), apellido);
+		Predicate eFacultad = myBuilder.equal(estuFrom.get("facultad"), facultad);
 
-        Predicate eAnd = myBuilder.and(eNombre, eApellido, eFacultad);
+		Predicate eAnd = myBuilder.and(eNombre, eApellido, eFacultad);
 
-        CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
+		CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
 
-        TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
+		TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
 
-        return estuFinal.getResultList();
+		return estuFinal.getResultList();
 	}
 
 	@Override
 	public Estudiante buscarPorCedulaCorreo(String cedula, String correo) {
-		
+
 		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
 
-        CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
+		CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
 
-        Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
+		Root<Estudiante> estuFrom = myQuery.from(Estudiante.class);
 
-        Predicate eCedula = myBuilder.equal(estuFrom.get("cedula"), cedula);
-        Predicate eCorreo = myBuilder.equal(estuFrom.get("correo"), correo);
+		Predicate eCedula = myBuilder.equal(estuFrom.get("cedula"), cedula);
+		Predicate eCorreo = myBuilder.equal(estuFrom.get("correo"), correo);
 
-        Predicate eAnd = myBuilder.and(eCedula, eCorreo);
+		Predicate eAnd = myBuilder.and(eCedula, eCorreo);
 
-        CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
+		CriteriaQuery<Estudiante> eCompleta = myQuery.select(estuFrom).where(eAnd);
 
-        TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
+		TypedQuery<Estudiante> estuFinal = this.entityManager.createQuery(eCompleta);
 
-        return estuFinal.getSingleResult();
+		return estuFinal.getSingleResult();
+	}
+
+	@Override
+	public EstudianteSencillo buscarPorCedula(String cedula) {
+		TypedQuery<EstudianteSencillo> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.EstudianteSencillo(e.nombre, e.apellido, e.cedula) FROM Estudiante e WHERE e.cedula = :datoCedula",
+				EstudianteSencillo.class);
+		myQuery.setParameter("datoCedula", cedula);
+
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public List<EstudianteContadorEdad> consultarCantidadPorEdad() {
+		TypedQuery<EstudianteContadorEdad> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.EstudianteContadorEdad(e.edad, COUNT(e.apellido)) FROM Estudiante e GROUP BY e.edad HAVING COUNT(e.apellido) > 1",
+				EstudianteContadorEdad.class);
+
+		return myQuery.getResultList();
 	}
 }

@@ -8,15 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
-import com.uce.edu.demo.repository.modelo.PersonaSencilla;
-import com.uce.edu.demo.service.IPersonaJpaService;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorEdad;
+import com.uce.edu.demo.service.IEstudianteJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private IPersonaJpaService personaJpaService;
+	private IEstudianteJpaService estudianteJpaService;
 
 	private static Logger Log = Logger.getLogger(ProyectoU2JjApplication.class);
 
@@ -28,17 +27,13 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<PersonaSencilla> listaPersona = this.personaJpaService.buscarPorPersonaSencillo("Tinizaray");
+		Log.info("Estudiante: " + this.estudianteJpaService.buscarPorCedula("1715957537"));
 
-		for (PersonaSencilla perItem : listaPersona) {
-			Log.info("PersonaSencilla: " + perItem );
-		}
-		
-		List<PersonaContadorGenero> listaPersona1 = this.personaJpaService.consultarCantidadPorGenero();
+		List<EstudianteContadorEdad> listaEstudianteEdad = this.estudianteJpaService.consultarCantidadPorEdad();
 
-		for (PersonaContadorGenero perItem : listaPersona1) {
-			Log.info("PersonaContadorGenero: " + perItem );
+		for (EstudianteContadorEdad item : listaEstudianteEdad) {
+			Log.info("EstudianteContadorEdad: " + item);
 		}
-		
+
 	}
 }
