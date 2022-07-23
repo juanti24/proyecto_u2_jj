@@ -1,24 +1,26 @@
 package com.uce.edu.demo;
 
-import java.time.LocalDateTime;
-
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.deber22.repository.modelo.CiudadanoDos;
-import com.uce.edu.demo.deber22.repository.modelo.Pasaporte;
-import com.uce.edu.demo.deber22.service.ICiudadanoDosService;
+import com.uce.edu.demo.repository.modelo.onetwomany.Habitacion;
+import com.uce.edu.demo.repository.modelo.onetwomany.Hotel;
+import com.uce.edu.demo.service.IHabitacionService;
+import com.uce.edu.demo.service.IHotelService;
 
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoDosService iciudadanoservice;
+	private IHotelService ihotelService;
 
+	@Autowired
+	private IHabitacionService ihabitacionService ;
+	
 	private static Logger Log = Logger.getLogger(ProyectoU2JjApplication.class);
 
 	public static void main(String[] args) {
@@ -29,46 +31,28 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		CiudadanoDos c = new CiudadanoDos();
+		//Hotel hotel2 = new Hotel();
+		//hotel2.setNombre("Hilto Guayaquil");
+		//hotel2.setDireccion("Patria");
+
+		//this.ihotelService.insertar(hotel2);
+		Hotel hote = new Hotel();
+		hote.setId(1);
 		
-		c.setNombre("Juan");
-		c.setApellido("Jumbo");
-		c.setCedula("1723920111");
-		c.setFechaNacimiento(LocalDateTime.of(1997, 11, 16, 0, 0));
 		
-		Pasaporte p = new Pasaporte();
-		p.setCiudadano(c);
-		p.setNumero("1214");
-		p.setFechaEmision(LocalDateTime.of(1995, 2, 10, 0, 0));
-		p.setFechaCaducidad(LocalDateTime.of(2000, 2, 10, 0, 0));
+		Habitacion habi1 = new Habitacion();
+		habi1.setNumero("A234");
+		habi1.setPiso("10");
+		habi1.setTipo("Familiar");
+		habi1.setHotel(hote);
 		
-		CiudadanoDos c1 = new CiudadanoDos();
+		Habitacion habi2 = new Habitacion();
+		habi2.setNumero("A55");
+		habi2.setPiso("1");
+		habi2.setTipo("Individual");
+		habi2.setHotel(hote);
 		
-		c1.setNombre("Xavier");
-		c1.setApellido("Tinizaray");
-		c1.setCedula("1723920888");
-		c1.setFechaNacimiento(LocalDateTime.of(1990, 5, 12, 0, 0));
-		
-		Pasaporte p1 = new Pasaporte();
-		p1.setCiudadano(c1);
-		p1.setNumero("1214");
-		p1.setFechaEmision(LocalDateTime.of(1993, 2, 10, 0, 0));
-		p1.setFechaCaducidad(LocalDateTime.of(1998, 2, 10, 0, 0));
-		c1.setPasaporte(p1);
-		
-		//Insertar
-	     
-		this.iciudadanoservice.insertar(c1);
-	
-		//Buscar
-		this.iciudadanoservice.buscar(2);
-		
-		//Actualizar
-		
-		c1.setApellido("Suarez");
-		this.iciudadanoservice.actualizar(c1);
-		
-		//Eliminar
-		this.iciudadanoservice.eliminar(6);
+		this.ihabitacionService.insertar(habi1);
+		this.ihabitacionService.insertar(habi2);
 	}
 }
