@@ -1,26 +1,26 @@
 package com.uce.edu.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.onetwomany.Habitacion;
-import com.uce.edu.demo.repository.modelo.onetwomany.Hotel;
-import com.uce.edu.demo.service.IHabitacionService;
-import com.uce.edu.demo.service.IHotelService;
+import com.uce.edu.demo.deber23.repository.modelo.Editorial;
+import com.uce.edu.demo.deber23.repository.modelo.Libro;
+import com.uce.edu.demo.deber23.service.IEditorialService;
 
 
 @SpringBootApplication
 public class ProyectoU2JjApplication implements CommandLineRunner {
 
 	@Autowired
-	private IHotelService ihotelService;
+	private IEditorialService ieditorialService ;
 
-	@Autowired
-	private IHabitacionService ihabitacionService ;
-	
+
 	private static Logger Log = Logger.getLogger(ProyectoU2JjApplication.class);
 
 	public static void main(String[] args) {
@@ -31,28 +31,67 @@ public class ProyectoU2JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//Hotel hotel2 = new Hotel();
-		//hotel2.setNombre("Hilto Guayaquil");
-		//hotel2.setDireccion("Patria");
-
-		//this.ihotelService.insertar(hotel2);
-		Hotel hote = new Hotel();
-		hote.setId(1);
+		Editorial edit1 = new Editorial();
+		edit1.setNombre("Casa Blanca");
+		edit1.setUbicacion("Rodrigo de Chavez");
+		edit1.setTelefono("3101501");
+		
+		Libro libro1 = new Libro();
+		
+		libro1.setNombre("La Mala Hora");
+		libro1.setNumeroPaginas("220");
+		libro1.setGenero("Terror");
+		libro1.setAutor("Paulo Coelho");
+		libro1.setEditorial(edit1);
+		
+		Libro libro2 = new Libro();
+		
+		libro2.setNombre("El Señor de los Anillos");
+		libro2.setNumeroPaginas("220");
+		libro2.setGenero("Fantasia");
+		libro2.setAutor("J.K Rolling");
+		libro2.setEditorial(edit1);
+		
+		Libro libro3 = new Libro();
+		
+		libro3.setNombre("El Codigo Da Vince");
+		libro3.setNumeroPaginas("200");
+		libro3.setGenero("Fantasia");
+		libro3.setAutor("Dan Brown");
+		libro3.setEditorial(edit1);
+		
+		List <Libro> libros = new ArrayList<>();
+		libros.add(libro1);
+		libros.add(libro2);
+		libros.add(libro3);
+		
+		edit1.setLibros(libros);
+		
+		Editorial edit2 = new Editorial();
+		edit2.setNombre("Estudiantil");
+		edit2.setUbicacion("Av Bemeo");
+		edit2.setTelefono("2657333");
+		edit2.setLibros(libros);
+		
+		Editorial edit3 = new Editorial();
+		edit3.setNombre("Don Bos");
+		edit3.setUbicacion("Av Universitaria");
+		edit3.setTelefono("2640333");
+		edit3.setLibros(libros);
 		
 		
-		Habitacion habi1 = new Habitacion();
-		habi1.setNumero("A234");
-		habi1.setPiso("10");
-		habi1.setTipo("Familiar");
-		habi1.setHotel(hote);
+		//Insertar
+		this.ieditorialService.insertar(edit3);
 		
-		Habitacion habi2 = new Habitacion();
-		habi2.setNumero("A55");
-		habi2.setPiso("1");
-		habi2.setTipo("Individual");
-		habi2.setHotel(hote);
+		//Buscar
+		this.ieditorialService.buscar(1);
 		
-		this.ihabitacionService.insertar(habi1);
-		this.ihabitacionService.insertar(habi2);
+		//Actualizar
+		edit2.setUbicacion("La Mariscal");
+		this.ieditorialService.actualizar(edit2);
+		
+		//Eliminar
+		this.ieditorialService.eliminar(2);
+		
 	}
 }
