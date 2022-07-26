@@ -1,6 +1,6 @@
 package com.uce.edu.demo.repository;
 
-import com.uce.edu.demo.repository.modelo.onetwomany.Hotel;
+import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
 
 public interface IHotelRepository {
 

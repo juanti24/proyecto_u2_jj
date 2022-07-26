@@ -1,4 +1,4 @@
-package com.uce.edu.demo.repository.modelo.onetwomany;
+package com.uce.edu.demo.repository.modelo.onetomany;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

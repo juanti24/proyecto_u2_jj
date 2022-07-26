@@ -6,20 +6,18 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
+import com.uce.edu.demo.repository.modelo.manytomany.Libro;
+
 @Repository
 @Transactional
-public class HabitacionRepositoryImpl implements IHabitacionRepository {
+public class LibroRepositoryImpl implements ILibroRepository {
 
-	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
-	
 	@Override
-	public void insertar(Habitacion h) {
-		this.entityManager.persist(h);
+	public void insertar(Libro l) {
+		this.entityManager.persist(l);
 		
 	}
 
