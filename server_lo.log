@@ -28,3 +28,24 @@
 2022-07-13 23:18:15 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715900227, nombre=Carlos, apellido=Suarez, edad=22, semestre=Segundo]
 2022-07-13 23:18:46 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1715900117, nombre=Pepe, apellido=Suarez, edad=22, semestre=Segundo]
 2022-07-13 23:27:45 INFO  EstudianteJpaRepositoryImpl:27 - Insertando en la base de datos: Estudiante [cedula=1712900117, nombre=Luis, apellido=Suarez, edad=22, semestre=Segundo]
+2022-07-26 22:52:49 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: com.uce.edu.demo.prueba.repository.modelo.Vehiculo@20fcac57
+2022-07-26 22:53:16 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
+2022-07-26 23:24:56 DEBUG VehiculoRepositoryImpl:25 - Insertanddo vehiculo: com.uce.edu.demo.prueba.repository.modelo.Vehiculo@31b5cd67
+2022-07-26 23:24:57 DEBUG VehiculoRepositoryImpl:38 - Actualizando vehiculo 
+2022-07-26 23:26:29 INFO  GestorMatriculaServiceImpl:45 - Vehiculo encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Vehiculo@1d756a6c
+2022-07-26 23:26:29 INFO  GestorMatriculaServiceImpl:46 - Propietario encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Propietario@7e1c4519
+2022-07-26 23:26:29 INFO  MatriculaRepositoryImpl:21 - Insertando matricula: com.uce.edu.demo.prueba.repository.modelo.Matricula@f4a375d
+2022-07-26 23:28:59 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Vehiculo@5204d6f0
+2022-07-26 23:28:59 INFO  GestorMatriculaServiceImpl:49 - Propietario encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Propietario@f553c92
+2022-07-26 23:28:59 INFO  MatriculaRepositoryImpl:21 - Insertando matricula: com.uce.edu.demo.prueba.repository.modelo.Matricula@413d409d
+2022-07-26 23:35:14 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Vehiculo@4ccfcd4b
+2022-07-26 23:35:14 INFO  GestorMatriculaServiceImpl:49 - Propietario encontrado para setear en la matricula: com.uce.edu.demo.prueba.repository.modelo.Propietario@28ab3d7
+2022-07-26 23:35:14 INFO  MatriculaRepositoryImpl:21 - Insertando matricula: com.uce.edu.demo.prueba.repository.modelo.Matricula@2432e15
+2022-07-26 23:42:50 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]
+2022-07-26 23:42:50 INFO  GestorMatriculaServiceImpl:49 - Propietario encontrado para setear en la matricula: Propietario [id=1, nombre=Luis, apellido=Jumbo, cedula=1745620979, matriculas=[], fechaNacimiento=1984-07-02T00:00]
+2022-07-26 23:42:50 INFO  MatriculaRepositoryImpl:21 - Insertando matricula: Matricula [id=null, fechaMatricula=2022-07-26T23:42:50.653261, valorMatricula=2139.00, propietario=null, vehiculo=Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]]
+2022-07-26 23:43:31 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]
+2022-07-27 00:32:02 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]
+2022-07-27 00:33:03 INFO  GestorMatriculaServiceImpl:48 - Vehiculo encontrado para setear en la matricula: Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]
+2022-07-27 00:33:03 INFO  GestorMatriculaServiceImpl:49 - Propietario encontrado para setear en la matricula: Propietario [id=1, nombre=Luis, apellido=Jumbo, cedula=1745620979, matriculas=[], fechaNacimiento=1984-07-02T00:00]
+2022-07-27 00:33:03 INFO  MatriculaRepositoryImpl:21 - Insertando matricula: Matricula [id=null, fechaMatricula=2022-07-27T00:33:03.253181800, valorMatricula=2139.00, propietario=null, vehiculo=Vehiculo [id=1, marca=Toyota, placa=PJJ-2514, tipo=L, precio=23000.00, matriculas=[]]]

@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,31 +13,32 @@ import javax.persistence.Table;
 public class Vehiculo {
 
 	@Id
-	@Column(name = "vehi_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehi_id_seq")
-	@SequenceGenerator(name = "vehi_id_seq", sequenceName = "vehi_id_seq", allocationSize = 1)
-	private Integer id;
-
-	@Column(name = "vehi_marca")
-	private String marca;
-
 	@Column(name = "vehi_placa")
 	private String placa;
-
+	
+	@Column(name = "vehi_marca")
+	private String marca;
+	
+	@Column(name = "vehi_modelo")
+	private String modelo;
+	
 	@Column(name = "vehi_tipo")
 	private String tipo;
-
+	
 	@Column(name = "vehi_precio")
 	private BigDecimal precio;
+	
+	@OneToOne(mappedBy = "vehiculo")
+	private Matricula matricula;	
+	
 
-	// SET Y GET
-	public Integer getId() {
-		return id;
+	@Override
+	public String toString() {
+		return "Vehiculo [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", tipo=" + tipo + ", precio="
+				+ precio + ", matricula=" + matricula + "]";
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	// GET Y SET
 
 	public String getMarca() {
 		return marca;
@@ -47,6 +46,14 @@ public class Vehiculo {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
 	public String getPlaca() {
@@ -73,10 +80,13 @@ public class Vehiculo {
 		this.precio = precio;
 	}
 
-	@Override
-	public String toString() {
-		return "Vehiculo [id=" + id + ", marca=" + marca + ", placa=" + placa + ", tipo=" + tipo + ", precio=" + precio
-				+ "]";
+	public Matricula getMatricula() {
+		return matricula;
 	}
 
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
+	}
+
+	
 }

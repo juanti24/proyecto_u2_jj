@@ -14,39 +14,26 @@ import com.uce.edu.demo.prueba.repository.modelo.Propietario;
 @Transactional
 public class PropietrarioRepositoryImpl implements IPropietarioRepository {
 
-	private static Logger LOG = Logger.getLogger(PropietrarioRepositoryImpl.class);
-
 	@PersistenceContext
-	private EntityManager entitymanager;
+	private EntityManager entityManager;
 
 	@Override
-	public void insertar(Propietario propietario) {
+	public void insertar(Propietario p) {
 		// TODO Auto-generated method stub
-		this.entitymanager.persist(propietario);
-
+		this.entityManager.persist(p);
 	}
 
 	@Override
-	public Propietario buscar(String cedula) {
-
-		Query myQuery = this.entitymanager.createQuery("SELECT p FROM Propietario p WHERE p.cedula=:cedula");
-		myQuery.setParameter("cedula", cedula);
-
-		return (Propietario) myQuery.getSingleResult();
-	}
-
-	@Override
-	public void actualizar(Propietario propietario) {
-		LOG.info("Actualizando Propietario ");
-		this.entitymanager.merge(propietario);
-	}
-
-	@Override
-	public void eliminar(String cedula) {
+	public Propietario buscarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		LOG.info("Eliminando por cedula: " + cedula);
-		Propietario p = this.buscar(cedula);
-		this.entitymanager.remove(p);
+		return this.entityManager.find(Propietario.class, cedula);
+	}
+
+	@Override
+	public void borrar(String cedula) {
+		// TODO Auto-generated method stub
+		this.entityManager.remove(this.buscarPorCedula(cedula));
+
 	}
 
 }

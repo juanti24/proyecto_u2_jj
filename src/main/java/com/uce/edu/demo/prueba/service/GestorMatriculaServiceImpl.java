@@ -1,76 +1,76 @@
 package com.uce.edu.demo.prueba.service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.uce.edu.demo.prueba.repository.IMatriculaRepository;
+import com.uce.edu.demo.prueba.repository.IPropietarioRepository;
+import com.uce.edu.demo.prueba.repository.IVehiculoRepository;
 import com.uce.edu.demo.prueba.repository.modelo.Matricula;
 import com.uce.edu.demo.prueba.repository.modelo.Propietario;
 import com.uce.edu.demo.prueba.repository.modelo.Vehiculo;
 
 @Service
-public class GestorMatriculaServiceImpl implements IGestorMatriculaService {
-
-	private static Logger LOG = Logger.getLogger(GestorMatriculaServiceImpl.class);
-
+public class GestorMatriculaServiceImpl implements IGestorMatriculaService{
+	
 	@Autowired
-	private IPropietarioService propietarioService;
-
-	@Autowired
-	private IVehiculoService vehiculoService;
-
-	@Autowired
-	private IMatriculaService matriculaService;
+	private IVehiculoRepository iVehiculoRepository;
 
 	@Autowired
 	@Qualifier("liviano")
-	private IMatriculaVehicularService vehiL;
+	private IVehiculoService iVehiculoServiceLiviano;
 
 	@Autowired
 	@Qualifier("pesado")
-	private IMatriculaVehicularService vehiP;
+	private IVehiculoService iVehiculoServicePesado;
+
+	@Autowired
+	private IMatriculaRepository iMatriculaRepository;
+
+	@Autowired
+	private IPropietarioRepository iPropietarioJpaRepository;
 
 	@Override
-	public void matricularVehiculo(String cedulaPropietario, String placaVehiculo) {
+	public BigDecimal valorMatricula(Vehiculo v) {
 		// TODO Auto-generated method stub
-
-		Vehiculo v = this.vehiculoService.buscarPorPlaca(placaVehiculo);
-		Propietario p = this.propietarioService.buscarPorCedula(cedulaPropietario);
-
-		LOG.info("Vehiculo encontrado para setear en la matricula: " + v.toString());
-		LOG.info("Propietario encontrado para setear en la matricula: " + p.toString());
-
-		Matricula m = new Matricula();
-		m.setFechaMatricula(LocalDateTime.now());
-		// m.setPropietario(null);//le envio null porque tofavia no vemos las relaciones
-		// entre tablas
-		BigDecimal valMatricula = null;
-		
-		
+		BigDecimal valorMatricula = null;
+		BigDecimal descuento = new BigDecimal(7).divide(new BigDecimal(100));
 
 		if (v.getTipo().equals("L")) {
-			valMatricula = this.vehiL.calcularDescuento(v.getPrecio());
-		} else if (v.getTipo().equals("P")) {
-			valMatricula = this.vehiP.calcularDescuento(v.getPrecio());
+			// Liviano
+			valorMatricula = this.iVehiculoServiceLiviano.calcularValor(v.getPrecio());
+		} else {
+			// Pesado
+			valorMatricula = this.iVehiculoServicePesado.calcularValor(v.getPrecio());
 		}
 
-		if (valMatricula.compareTo(new BigDecimal(2000)) > 0) {
-			System.out.println("Aplicando descuento : " + valMatricula);
-			BigDecimal valDescuento = valMatricula.multiply(new BigDecimal(0.07));
-			valMatricula = valMatricula.subtract(valDescuento);
+		if (valorMatricula.compareTo(new BigDecimal(2000)) == 1) {
+
+			valorMatricula = valorMatricula.subtract(valorMatricula.multiply(descuento));
 		}
 
-		m.setValorMatricula(valMatricula.setScale(2, RoundingMode.HALF_UP));
-		// m.setVehiculo(null); //le envio null porque todavia no vemos relaciones entre
-		// tablas
+		return valorMatricula;
+	}
 
-		this.matriculaService.insertarMatricula(m);
+	@Override
+	public void matricular(String cedula, String placa) {
+		// TODO Auto-generated method stub
+		Vehiculo v = this.iVehiculoRepository.buscarPorPlaca(placa);
+
+		Propietario p = this.iPropietarioJpaRepository.buscarPorCedula(cedula);
+
+		Matricula m = new Matricula();
+		m.setFechaMatricula(LocalDate.now());
+		m.setValorMatricula(this.iVehiculoServiceLiviano.calcularValor(v.getPrecio()));
+		m.setPropietario(p);
+		m.setVehiculo(v);
+		this.iMatriculaRepository.insertar(m);
 
 	}
 
 }
+

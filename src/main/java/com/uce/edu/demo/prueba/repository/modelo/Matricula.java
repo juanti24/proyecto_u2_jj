@@ -1,13 +1,16 @@
 package com.uce.edu.demo.prueba.repository.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,22 +19,30 @@ import javax.persistence.Table;
 public class Matricula {
 
 	@Id
-	@Column(name = "mtri_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mtri_id_seq")
-	@SequenceGenerator(name = "mtri_id_seq", sequenceName = "mtri_id_seq", allocationSize = 1)
+	@Column(name = "matri_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "matri_id_seq")
+	@SequenceGenerator(name = "matri_id_seq", sequenceName = "matri_id_seq", allocationSize = 1)
 	private Integer id;
 
-	@Column(name = "mtri_fecha_matricula")
-	private LocalDateTime fechaMatricula;
+	@Column(name = "matri_fecha")
+	private LocalDate fechaMatricula;
 
-	@Column(name = "mtri_valor_matricula")
+	@Column(name = "matri_valor")
 	private BigDecimal valorMatricula;
 
-//	@Column(name = "mtri_propietario")
-//	private Propietario propietario;
-//	
-//	@Column(name = "mtri_vehiculo")
-//	private Vehiculo vehiculo;
+	@ManyToOne
+	@JoinColumn(name = "matri_id_prop")
+	private Propietario propietario;
+
+	@OneToOne
+	@JoinColumn(name = "matri_id_vehi") // representa la FK
+	private Vehiculo vehiculo;
+
+	@Override
+	public String toString() {
+		return "Matricula [id=" + id + ", fechaMatricula=" + fechaMatricula + ", valorMatricula=" + valorMatricula
+				+ ", propietario=" + propietario + ", vehiculo=" + vehiculo + "]";
+	}
 
 	// SET Y GET
 	public Integer getId() {
@@ -42,11 +53,11 @@ public class Matricula {
 		this.id = id;
 	}
 
-	public LocalDateTime getFechaMatricula() {
+	public LocalDate getFechaMatricula() {
 		return fechaMatricula;
 	}
 
-	public void setFechaMatricula(LocalDateTime fechaMatricula) {
+	public void setFechaMatricula(LocalDate fechaMatricula) {
 		this.fechaMatricula = fechaMatricula;
 	}
 
@@ -58,10 +69,20 @@ public class Matricula {
 		this.valorMatricula = valorMatricula;
 	}
 
-	@Override
-	public String toString() {
-		return "Matricula [id=" + id + ", fechaMatricula=" + fechaMatricula + ", valorMatricula=" + valorMatricula
-				+ "]";
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
 	}
 
 }

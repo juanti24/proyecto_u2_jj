@@ -1,15 +1,19 @@
 package com.uce.edu.demo.prueba.service;
 
+import java.math.BigDecimal;
+
 import com.uce.edu.demo.prueba.repository.modelo.Vehiculo;
 
 public interface IVehiculoService {
 	
-	void insertarVehiculo(Vehiculo vehiculo);
+	public void insertar(Vehiculo v);
 
-	Vehiculo buscarPorPlaca(String placa);
+	public Vehiculo buscarPorPalca(String placa);
 
-	void actualizarVehiculo(Vehiculo vehiculo);
+	public void actualizar(Vehiculo v);
 
-	void eliminarPorPlaca(String placa);
+	public void borrarPorPlaca(String placa);
+	
+	public BigDecimal calcularValor(BigDecimal precio);
 
 }

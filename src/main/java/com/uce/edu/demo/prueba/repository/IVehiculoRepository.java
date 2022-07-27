@@ -4,13 +4,12 @@ import com.uce.edu.demo.prueba.repository.modelo.Vehiculo;
 
 public interface IVehiculoRepository {
 	
-   public void insertar(Vehiculo v);
-	
-	public Vehiculo buscar(String placa);
-	
+	public void insertar(Vehiculo v);
+
+	public Vehiculo buscarPorPlaca(String placa);
+
 	public void actualizar(Vehiculo v);
 
-	public void eliminar(String placa);
-
+	public void borrar(String placa);
 
 }

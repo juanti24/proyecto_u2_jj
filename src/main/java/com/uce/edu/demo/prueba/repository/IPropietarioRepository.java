@@ -4,12 +4,10 @@ import com.uce.edu.demo.prueba.repository.modelo.Propietario;
 
 public interface IPropietarioRepository {
 
-	void insertar(Propietario propietario);
+	public void insertar(Propietario p);
 
-	Propietario buscar(String cedula);
+	public void borrar(String cedula);
 
-	void actualizar(Propietario propietario);
-
-	void eliminar(String cedula);
+	public Propietario buscarPorCedula(String cedula);
 
 }

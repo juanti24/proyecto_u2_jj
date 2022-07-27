@@ -13,37 +13,33 @@ import com.uce.edu.demo.prueba.repository.modelo.Vehiculo;
 @Repository
 @Transactional
 public class VehiculoRepositoryImpl implements IVehiculoRepository {
-	
-private static Logger LOG = Logger.getLogger(VehiculoRepositoryImpl.class);
-	
+
+
 	@PersistenceContext
-	private EntityManager entitymanager;
-			
+	private EntityManager entityManager;
+
 	@Override
-	public void insertar(Vehiculo vehiculo) {
+	public void insertar(Vehiculo v) {
 		// TODO Auto-generated method stub
-		LOG.debug("Insertanddo vehiculo: "+vehiculo.toString());
-		this.entitymanager.persist(vehiculo);
+		this.entityManager.persist(v);
 	}
 
 	@Override
-	public Vehiculo buscar(String placa) {
-		Query myQuery = this.entitymanager.createQuery("SELECT v FROM Vehiculo v WHERE v.placa=:placa");
-		myQuery.setParameter("placa", placa);
-		return (Vehiculo) myQuery.getSingleResult();
+	public Vehiculo buscarPorPlaca(String placa) {
+		// TODO Auto-generated method stub
+		return this.entityManager.find(Vehiculo.class, placa);
 	}
 
 	@Override
-	public void actualizar(Vehiculo vehiculo) {
-		LOG.debug("Actualizando vehiculo ");
-		this.entitymanager.merge(vehiculo);
+	public void actualizar(Vehiculo v) {
+		// TODO Auto-generated method stub
+		this.entityManager.merge(v);
 	}
 
 	@Override
-	public void eliminar(String placa) {
-		LOG.debug("Eliminando vehiculo por placa: "+placa);
-		Vehiculo v = this.buscar(placa);
-		this.entitymanager.remove(v);
+	public void borrar(String placa) {
+		// TODO Auto-generated method stub
+		this.entityManager.remove(this.buscarPorPlaca(placa));
 	}
 
 }
