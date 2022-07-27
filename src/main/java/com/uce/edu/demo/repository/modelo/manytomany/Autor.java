@@ -2,6 +2,7 @@ package com.uce.edu.demo.repository.modelo.manytomany;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Autor {
 	@Column(name = "autr_nombre")
 	private String nombre;
 	
-	@ManyToMany(mappedBy = "autores")
+	@ManyToMany(mappedBy = "autores", cascade = CascadeType.ALL)
 	private Set<Libro> libros;
 
 	//SET Y GET

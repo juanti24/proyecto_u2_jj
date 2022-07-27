@@ -31,7 +31,6 @@ public class Libro {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "liau_id_libro"),inverseJoinColumns = @JoinColumn(name="liau_id_autor"))
-	
 	private Set<Autor> autores;
 
 	//SET Y GET
